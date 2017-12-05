@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header(~{::title})" lang="en">
-    <title>Index</title>
+    <title>Items</title>
 </head>
 
 <body>
@@ -11,20 +11,20 @@
 
     <div class="item-list">
         <div class="row item-list-header">
-            <div class="col item-list-cell">Name</div>
-            <div class="col item-list-cell">Description</div>
-            <div class="col item-list-cell">Price</div>
-            <div class="col item-list-cell">
-                <img src="" th:src="@{/img/shopping_cart_black.svg}" width="24" height="24">
+            <div class="col-3 item-list-cell"><span>Name</span></div>
+            <div class="col-5 item-list-cell"><span>Description</span></div>
+            <div class="col-2 item-list-cell"><span>Price</span></div>
+            <div class="col-2 item-list-cell">
+                <img src="" th:src="@{/img/add_shopping_cart_grey.svg}" width="24" height="24">
             </div>
         </div>
         <form th:each="item : ${items}" action="#" th:action="@{/cart}" method="post">
             <div class="row">
-                    <input type="hidden" th:value="${item.id}" id="id" name="id"/>
-                    <div class="col item-list-cell" th:text="${item.name}"></div>
-                    <div class="col item-list-cell" th:text="${item.description}"></div>
-                    <div class="col item-list-cell" th:text="${item.price}"></div>
-                    <div class="col item-list-cell"><input type="submit" name="action" value="Add to Cart"/></div>
+                <input type="hidden" th:value="${item.id}" id="id" name="id"/>
+                <div class="col-3 item-list-cell"><span th:text="${item.name}"></span></div>
+                <div class="col-5 item-list-cell"><span th:text="${item.description}"></span></div>
+                <div class="col-2 item-list-cell"><span th:text="'$'+${#numbers.formatDecimal(item.price, 1, 'COMMA', 2, 'POINT')}"></span></div>
+                <div class="col-2 item-list-cell"><input class="btn btn-success" type="submit" name="add_cart" value="Add to Cart"/></div>
             </div>
         </form>
     </div>
