@@ -32,33 +32,37 @@ public class WebController {
     private Cart cart;
 
     @RequestMapping("/login")
-    public String login(Model model){
+    public String login(Model model) {
         return "login";
     }
 
     @RequestMapping("/items")
-    public String items(Model model){
+    public String items(Model model) {
         List<Item> itemList = itemRepository.findAll();
         model.addAttribute("items", itemList);
         return "items";
     }
 
     @PostMapping("/cart")
-    public String updateCart(Model model, @ModelAttribute Item item, @RequestParam(required=false) String action){
+    public String updateCart(Model model, @ModelAttribute("item") Item item, @RequestParam(required = false) String add_cart, @RequestParam(required = false) String remove_cart) {
         Item foundItem = itemRepository.findOne(item.getId());
-        if(foundItem != null){
-            if(action != null && action.equalsIgnoreCase("remove")){
-                cart.removeItemFromList(foundItem);
-            }else {
+        if (foundItem != null) {
+            if (add_cart != null) {
                 cart.addItemToList(foundItem);
+            } else if (remove_cart != null) {
+                cart.removeItemFromList(foundItem);
             }
         }
         return cart(model);
     }
 
+    @ModelAttribute("customer")
+    public Customer loadEmptyCustObj() {
+        return new Customer();
+    }
 
     @GetMapping("/cart")
-    public String cart(Model model){
+    public String cart(Model model) {
         List<Item> itemList = cart.getItemList();
         model.addAttribute("items", itemList);
         List<Customer> customerList = customerRepository.findAll();
@@ -67,12 +71,12 @@ public class WebController {
     }
 
     @PostMapping("/save")
-    public String saveCart(Model model, @ModelAttribute Customer customer, @RequestParam boolean existing){
+    public String saveCart(Model model, @ModelAttribute("customer") Customer customer, @RequestParam boolean existing) {
         /** Check if exsiting or new */
-        if(existing){
+        if (existing) {
             //If the customer exists, use the ID to get the full customer object
             customer = customerRepository.findOne(customer.getId());
-        }else{
+        } else {
             //Else clear out the customer id and save it to the repo (getting a new ID in the process)
             customer.setId(null);
             customerRepository.save(customer);
@@ -82,17 +86,17 @@ public class WebController {
         purchase.setCustomer(customer);
         purchase.setItems(cart.getItemList());
         purchaseRepository.save(purchase);
-        return "error";
+        return getPurchases(model, customer);
     }
 
     @GetMapping("/customers")
-    public String getCustomers(Model model){
-        model.addAttribute("customers",customerRepository.findAll());
+    public String getCustomers(Model model) {
+        model.addAttribute("customers", customerRepository.findAll());
         return "customers";
     }
 
     @GetMapping("/purchases")
-    public String getPurchases(Model model, @ModelAttribute Customer customer){
+    public String getPurchases(Model model, @ModelAttribute Customer customer) {
         List<Purchase> purchases = customerRepository.findOne(customer.getId()).getPurchases();
         model.addAttribute("customer", customer);
         model.addAttribute("purchases", purchases);
@@ -101,7 +105,7 @@ public class WebController {
 
 
     @RequestMapping("/")
-    public String index(Model model){
+    public String index(Model model) {
         return "index";
     }
 }
