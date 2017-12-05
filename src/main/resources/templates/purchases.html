@@ -16,6 +16,7 @@
         <th>Date</th>
         <th>Items</th>
     </tr>
+
     <tr th:each="purchase : ${purchases}">
         <td th:text="${purchase.id}"></td>
         <td th:text="${purchase.date}"></td>
