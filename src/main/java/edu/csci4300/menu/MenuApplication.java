@@ -24,8 +24,6 @@ import java.util.Set;
 
 @SpringBootApplication
 @EnableJpaRepositories
-@EnableAutoConfiguration
-@ComponentScan
 public class MenuApplication {
 	private static final Logger log = LoggerFactory.getLogger(MenuApplication.class);
 
