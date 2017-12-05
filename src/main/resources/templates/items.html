@@ -1,10 +1,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
-
-    <title>Items</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head th:replace="fragments/header :: header(~{::title})" lang="en">
+    <title>Index</title>
 </head>
+
 <body>
+<nav th:replace="fragments/navbar :: navbar('index')">Navbar</nav>
 <h1>Items</h1>
 
 <table>
