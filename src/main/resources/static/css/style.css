@@ -2,6 +2,10 @@ body h1 {
     margin-top: 2rem;
 }
 
+table, th, tr, td {
+    border: 1px solid black;
+}
+
 .navbar {
     padding: .5rem 9rem;
 }
@@ -63,6 +67,15 @@ body h1 {
 .purchase-btn-group {
     display: flex;
     align-items: flex-end;
+}
+
+#purchases-page {
+    background-color: lightgray;
+    padding: 30px;
+}
+
+#purchase-table-item {
+    padding-bottom: 10px;
 }
 
 #login-page {

@@ -69,12 +69,18 @@
             $('#cart-select').hide();
             $('#new-customer-name-box').show();
             $('#cart-add-btn').val('Add Customer');
+            $('#cart-add-btn').show();
         }
 
         if ($('#cart-existing-radio').prop('checked')) {
             $('#cart-select').show();
             $('#new-customer-name-box').hide();
             $('#cart-add-btn').val('Purchase');
+            if ($('#cart-select option').length == 0) {
+                $('#cart-add-btn').hide();
+            } else {
+                $('#cart-add-btn').show();
+            }
         }
     };
 

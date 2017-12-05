@@ -1,13 +1,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
-
+<head th:replace="fragments/header :: header(~{::title})" lang="en">
     <title>Items</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
-<body>
-<h1>Purchases</h1>
+<body id="purchases-page">
+<div>
+<h1 class="text-center">Purchases</h1>
 
 <h2 th:text="${customer.name}"></h2>
+    <br>
 
 <h3>Purchase History</h3>
 <table>
@@ -25,15 +25,23 @@
                 <tr>
                     <th>Item Name</th>
                     <th>Item Description</th>
+                    <th>Item Price</th>
                 </tr>
                 <tr th:each="item : ${purchase.items}">
                     <td th:text="${item.name}"></td>
                     <td th:text="${item.description}"></td>
+                    <td th:text="'$'+${#numbers.formatDecimal(item.price, 1, 'COMMA', 2, 'POINT')}"></td>
                 </tr>
             </table>
         </td>
     </tr>
 </table>
 
+    <br>
+
+<form action="/cart">
+    <input class = "btn btn-success" type="submit" value="Back to Cart" />
+</form>
+</div>
 </body>
 </html>
