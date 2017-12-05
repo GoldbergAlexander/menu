@@ -4,25 +4,30 @@
 </head>
 
 <body>
-<nav th:replace="fragments/navbar :: navbar('index')">Navbar</nav>
-<h1>Items</h1>
+<nav th:replace="fragments/navbar :: navbar('items')">Navbar</nav>
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-    </tr>
-    <tr th:each="item : ${items}">
-        <form action="#" th:action="@{/cart}" method="post">
-            <input type="hidden" th:value="${item.id}" id="id" name="id"/>
-            <td th:text="${item.name}"></td>
-            <td th:text="${item.description}"></td>
-            <td th:text="${item.price}"></td>
-            <td><input type="submit" name="action" value="add"/></td>
+<div class="container">
+    <h1>Items</h1>
+
+    <div class="item-list">
+        <div class="row item-list-header">
+            <div class="col item-list-cell">Name</div>
+            <div class="col item-list-cell">Description</div>
+            <div class="col item-list-cell">Price</div>
+            <div class="col item-list-cell">
+                <img src="" th:src="@{/img/shopping_cart_black.svg}" width="24" height="24">
+            </div>
+        </div>
+        <form th:each="item : ${items}" action="#" th:action="@{/cart}" method="post">
+            <div class="row">
+                    <input type="hidden" th:value="${item.id}" id="id" name="id"/>
+                    <div class="col item-list-cell" th:text="${item.name}"></div>
+                    <div class="col item-list-cell" th:text="${item.description}"></div>
+                    <div class="col item-list-cell" th:text="${item.price}"></div>
+                    <div class="col item-list-cell"><input type="submit" name="action" value="Add to Cart"/></div>
+            </div>
         </form>
-    </tr>
-</table>
-
+    </div>
+</div>
 </body>
 </html>
