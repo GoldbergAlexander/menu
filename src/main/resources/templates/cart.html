@@ -1,39 +1,57 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header(~{::title})" lang="en">
-    <title>Index</title>
+    <title>Cart</title>
 </head>
 
 <body>
-<nav th:replace="fragments/navbar :: navbar('index')">Navbar</nav>
-<h1>Cart</h1>
+<nav th:replace="fragments/navbar :: navbar('cart')">Navbar</nav>
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-    </tr>
-    <tr th:each="item : ${items}">
-        <form action="#" th:action="@{/cart}" method="post">
+<div class="container">
+    <h1>Cart</h1>
+
+    <div class="item-list">
+        <div class="row item-list-header">
+            <div class="col-3 item-list-cell"><span>Name</span></div>
+            <div class="col-5 item-list-cell"><span>Description</span></div>
+            <div class="col-2 item-list-cell"><span>Price</span></div>
+            <div class="col-2 item-list-cell">
+                <img src="" th:src="@{/img/rem_shopping_cart_grey.svg}" width="24" height="24">
+            </div>
+        </div>
+        <form th:each="item : ${items}" action="#" th:action="@{/cart}" method="post">
+            <div class="row">
                 <input type="hidden" th:value="${item.id}" id="id" name="id"/>
-            <td th:text="${item.name}"></td>
-            <td th:text="${item.description}"></td>
-            <td th:text="${item.price}"></td>
-            <td><input type="submit" name="action" value="remove"/></td>
+                <div class="col-3 item-list-cell"><span th:text="${item.name}"></span></div>
+                <div class="col-5 item-list-cell"><span th:text="${item.description}"></span></div>
+                <div class="col-2 item-list-cell"><span th:text="'$'+${#numbers.formatDecimal(item.price, 1, 'COMMA', 2, 'POINT')}"></span></div>
+                <div class="col-2 item-list-cell"><input class="btn btn-danger" type="submit" name="remove_cart" value="Remove from Cart"/></div>
+            </div>
         </form>
-    </tr>
-</table>
+    </div>
 
-<form action="#" th:action="@{/save}" method="post">
-    <span>New Customer</span><input type="radio" name="existing" value="false"/>
-    <input type="text" name="name" id="name"/>
-    <span>Existing Customer</span><input type="radio" name="existing" value="true"/>
-    <select id="id" name="id">
-        <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.name}"></option>
-    </select>
-    <input type="submit" value="save"/>
-
-</form>
-
+    <form action="#" th:action="@{/save}" th:object="${customer}" method="post">
+        <div class="form-row">
+            <div class="form-group col-3">
+                <label class="custom-control custom-radio">
+                    <span class="custom-control-description">New Customer</span>
+                    <input class="custom-control-input" type="radio" name="existing" value="false">
+                    <span class="custom-control-indicator"></span>
+                </label>
+                <input type="text" class="form-control" th:field="*{name}" placeholder="Enter name..."/>
+            </div>
+            <div class="form-group col-3">
+                <label class="custom-control custom-radio">
+                    <span class="custom-control-description">Existing Customer</span>
+                    <input class="custom-control-input" type="radio" name="existing" value="true">
+                    <span class="custom-control-indicator"></span>
+                </label>
+                <select class="form-control" th:field="*{id}">
+                    <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.name}"></option>
+                </select>
+            </div>
+            <div class="form-group col-2 purchase-btn-group"><input class="btn btn-primary" type="submit" value="Purchase"/></div>
+        </div>
+    </form>
+</div>
 </body>
 </html>
