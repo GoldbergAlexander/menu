@@ -6,7 +6,7 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar('cart')">Navbar</nav>
 
-<div class="container">
+<div class="container-fluid">
     <h1>Cart</h1>
 
     <div class="item-list">
@@ -24,7 +24,7 @@
                 <div class="col-3 item-list-cell"><span th:text="${item.name}"></span></div>
                 <div class="col-5 item-list-cell"><span th:text="${item.description}"></span></div>
                 <div class="col-2 item-list-cell"><span th:text="'$'+${#numbers.formatDecimal(item.price, 1, 'COMMA', 2, 'POINT')}"></span></div>
-                <div class="col-2 item-list-cell"><button class="btn btn-danger" type="submit" name="remove_cart"><img th:src="@{img/delete_white.svg}" height="24" width="24"></button></div>
+                <div class="col-2 item-list-cell"><button class="btn btn-danger" type="submit" name="remove_cart"><img th:src="@{/img/delete_white.svg}" height="24" width="24"></button></div>
             </div>
         </form>
     </div>

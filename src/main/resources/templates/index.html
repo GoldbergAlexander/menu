@@ -7,7 +7,7 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar('index')">Navbar</nav>
 
-<div class="container">
+<div class="container-fluid">
 <h1>Index</h1>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
