@@ -12,7 +12,7 @@ public class Item implements Serializable{
     @GeneratedValue
     private Long id;
     private String name;
-    private int price;
+    private float price;
     private String description;
 
     @ManyToMany(mappedBy = "items")
@@ -55,11 +55,11 @@ public class Item implements Serializable{
         return this;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public Item setPrice(int price) {
+    public Item setPrice(float price) {
         this.price = price;
         return this;
     }
