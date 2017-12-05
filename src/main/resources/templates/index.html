@@ -1,11 +1,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments/header :: header(~{::title})" lang="en">
     <title>Index</title>
 </head>
+
 <body>
+<nav th:replace="fragments/navbar :: navbar('index')">Navbar</nav>
+
+<div class="container">
 <h1>Index</h1>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
 </form>
+</div>
 </body>
+
 </html>
