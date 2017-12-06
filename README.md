@@ -10,5 +10,7 @@ For this project, we are building an interactive restaurant menu in which a user
 Also, our page features an admin section where the admin(restaurant owner) can enter in the item name, item description, and price of an item they'd like to add to the menu. They can also delete and update these items.
 
 Login to the admin page by clicking on admin and use the following information:
+
 username: admin
+
 password: passwd
