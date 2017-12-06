@@ -2,13 +2,13 @@ package edu.csci4300.menu.pojo;
 
 import java.util.List;
 
-public class ListWrapper {
+public class ItemListWrapper {
     private List<Item> list;
 
-    public ListWrapper() {
+    public ItemListWrapper() {
     }
 
-    public ListWrapper(List<Item> list) {
+    public ItemListWrapper(List<Item> list) {
         this.list = list;
     }
 
