@@ -85,6 +85,7 @@ public class WebController {
         purchase.setCustomer(customer);
         purchase.setItems(cart.getItemList());
         purchaseRepository.save(purchase);
+        cart.setItemList(new ArrayList<Item>());
         return getPurchases(model, customer);
     }
 
