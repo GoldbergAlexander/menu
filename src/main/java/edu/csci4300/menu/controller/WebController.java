@@ -86,7 +86,8 @@ public class WebController {
         purchase.setItems(cart.getItemList());
         purchaseRepository.save(purchase);
         cart.setItemList(new ArrayList<Item>());
-        return getPurchases(model, customer);
+        model.addAttribute("purchased", true);
+        return "cart";
     }
 
     @GetMapping("/customers")
