@@ -2,62 +2,74 @@
 <head th:replace="fragments/header :: header(~{::title})" lang="en">
     <title>Purchases</title>
 </head>
-<body id="purchases-page">
-<nav th:replace="fragments/navbar :: navbar('items')">Navbar</nav>
+<body>
+<nav th:replace="fragments/navbar :: navbar('purchases')">Navbar</nav>
 <div class="container-fluid">
-<h1 class="text-center">Purchases</h1>
-    <div class="container" width="50%">
-        <div class="col-sm">
-        <span>Select Customer:</span>
-        </div>
+    <h1 class="text-center">Purchases</h1>
+    <div class="container-fluid">
         <form action="#" th:action="@{/purchases}" th:object="${customer}" method="post">
-            <div class="col-sm">
-                <select id ="cart-select"class="form-control" th:field="*{id}">
-                    <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.name}"></option>
-                </select>
+            <div class="form-group">
+            <label for="cart-select">Select Customer</label>
+            <select id ="cart-select"class="form-control" th:field="*{id}">
+                <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.name}"></option>
+            </select>
+                <small class="form-text text-muted">Selected customer's purchase history will be retrieved</small>
             </div>
-            <div class="col-sm">
             <input class="btn btn-primary" type="submit" value="submit"/>
-            </div>
         </form>
     </div>
 
-<h2 th:text="${customer.name}"></h2>
+    <h2 th:text="${customer.name}"></h2>
     <br>
 
-<h3>Purchase History</h3>
-<table class="table">
-    <tr>
-        <th>ID</th>
-        <th>Date</th>
-        <th>Items</th>
-    </tr>
+    <h3>Purchase History</h3>
 
-    <tr th:each="purchase : ${purchases}">
-        <td th:text="${purchase.id}"></td>
-        <td th:text="${purchase.date}"></td>
-        <td>
-            <table class="table">
-                <tr>
-                    <th>Item Name</th>
-                    <th>Item Description</th>
-                    <th>Item Price</th>
-                </tr>
-                <tr th:each="item : ${purchase.items}">
-                    <td th:text="${item.name}"></td>
-                    <td th:text="${item.description}"></td>
-                    <td th:text="'$'+${#numbers.formatDecimal(item.price, 1, 'COMMA', 2, 'POINT')}"></td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
-
-    <br>
-
-<form action="/cart">
-    <input class = "btn btn-success" type="submit" value="Back to Cart" />
-</form>
-</div>
+    <div class="item-list">
+        <div class="row item-list-header">
+            <div class="col-sm item-list-cell">
+                <span>ID</span>
+            </div>
+            <div class="col item-list-cell">
+                <span>Date</span>
+            </div>
+            <div class="col-lg item-list-cell">
+                <span>Items</span>
+            </div>
+        </div>
+        <div class="row" th:each="purchase : ${purchases}">
+            <div class="col-sm item-list-cell">
+                <span th:text="${purchase.id}"></span>
+            </div>
+            <div class="col item-list-cell">
+                <span th:text="${purchase.date}"></span>
+            </div>
+            <div class="col-lg item-list-cell">
+                <div class="item-list">
+                    <div class="row item-list-header">
+                        <div class="col-sm item-list-cell">
+                            <span>Name</span>
+                        </div>
+                        <div class="col-sm item-list-cell">
+                            <span>Description</span>
+                        </div>
+                        <div class="col-sm item-list-cell">
+                            <span>Price</span>
+                        </div>
+                    </div>
+                    <div class="row" th:each="item : ${purchase.items}">
+                        <div class="col-sm item-list-cell">
+                            <span th:text="${item.name}"></span>
+                        </div>
+                        <div class="col-sm item-list-cell">
+                            <span th:text="${item.description}"></span>
+                        </div>
+                        <div class="col-sm item-list-cell">
+                            <span th:text="'$'+${#numbers.formatDecimal(item.price, 1, 'COMMA', 2, 'POINT')}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
