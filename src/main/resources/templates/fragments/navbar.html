@@ -16,6 +16,9 @@
             <li th:class="${page == 'admin'} ? 'nav-item active' : 'nav-item'">
                 <a class="nav-link" th:href="@{/admin}">Admin</a>
             </li>
+            <li th:class="${page == 'purchases'} ? 'nav-item active' : 'nav-item'">
+                <a class="nav-link" th:href="@{/purchases}">Purchases</a>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li th:class="${page == 'cart'} ? 'nav-item active' : 'nav-item'">

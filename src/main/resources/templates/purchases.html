@@ -6,6 +6,13 @@
 <div>
 <h1 class="text-center">Purchases</h1>
 
+    <form action="#" th:action="@{/purchases}" th:object="${customer}" method="post">
+    <select id ="cart-select"class="form-control" th:field="*{id}">
+        <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.name}"></option>
+    </select>
+        <input type="submit" value="submit"/>
+    </form>
+
 <h2 th:text="${customer.name}"></h2>
     <br>
 

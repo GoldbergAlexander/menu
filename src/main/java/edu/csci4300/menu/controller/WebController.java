@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /* Web Controller for basic endpoints */
@@ -80,7 +81,6 @@ public class WebController {
             customer.setId(null);
             customerRepository.save(customer);
         }
-
         Purchase purchase = new Purchase();
         purchase.setCustomer(customer);
         purchase.setItems(cart.getItemList());
@@ -94,11 +94,15 @@ public class WebController {
         return "customers";
     }
 
-    @GetMapping("/purchases")
+    @RequestMapping("/purchases")
     public String getPurchases(Model model, @ModelAttribute Customer customer) {
-        List<Purchase> purchases = customerRepository.findOne(customer.getId()).getPurchases();
-        model.addAttribute("customer", customer);
-        model.addAttribute("purchases", purchases);
+        model.addAttribute("customers", customerRepository.findAll());
+        if(customer != null && customer.getId() != null) {
+            customer = customerRepository.findOne(customer.getId());
+            List<Purchase> purchases = customer.getPurchases();
+            model.addAttribute("customer", customer);
+            model.addAttribute("purchases", purchases);
+        }
         return "purchases";
     }
 
