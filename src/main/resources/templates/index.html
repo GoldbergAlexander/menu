@@ -4,15 +4,32 @@
     <title>Index</title>
 </head>
 
-<body>
+<body id ="home-page">
 <nav th:replace="fragments/navbar :: navbar('index')">Navbar</nav>
 
 <div class="container-fluid">
-<h1>Index</h1>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+<h1 class="text-center">Modern-Era Food</h1>
+    <h2 class="text-center" id ="home-description"><em>The Premiere Establishment for Intelligent Eating</em></h2>
+    <br>
+    <br>
+    <div class="text-center"><button id="home-to-item-btn"class="glass text-center" onclick="changeItemPage()" value="item">Choose Items to Add to Cart</button></div>
+    <br>
+    <div class="text-center"><button id="home-to-admin-btn" class="glass text-center" onclick="changeAdminPage()" value="admin">Admin Log-In</button></div>
+    <br>
+    <div class="text-center"><button id="home-to-cart-btn" class="glass text-center" onclick="changeCartPage()" value="cart">Go to Cart</button></div>
 </div>
+
+<script>
+    function changeItemPage() {
+        window.location.replace("http://localhost:8080/items");
+    }
+    function changeAdminPage() {
+        window.location.replace("http://localhost:8080/login");
+    }
+    function changeCartPage() {
+        window.location.replace("http://localhost:8080/cart");
+    }
+</script>
 </body>
 
 </html>
