@@ -3,12 +3,8 @@
 * 811378624 - Alexander Goldberg
 * 811988102 - Brett Goldfine
 
-This is a team project consisting of Alexander Goldberg, Safa Asadi, Konstantin Keller and Brett Goldfine
+This is a team project consisting of Alexander Goldberg, Safa Asadi, Konstantin Keller and Brett Goldfine.
 
-For this project we are building an interactive restaurant menu in which a user can create their own distinct order for a 
-restaurant and save this order for future references. This will enable a user to order from the menu and "Purchase" the items 
-from the menu. This will then be saved into a database for the user to access at any time to "ReOrder" their past purchases as 
-a customer will usually order their typical favorites from their usual restaurants. The customer will have a list to choose 
-from and select the items, once the customer has completed their selections, the customer can hit purchase and this will 
-automatically save their selections into the database along with other users entries. This can also permit customers to select 
-other peoples order entries as well if they will like to try someone elses order.
+For this project, we are building an interactive restaurant menu in which a user can create their own distinct order with a stylish, easy to use interface. In our app, users can add different items offered on the menu to their cart which will save between visits. They can create different users the purchase the items from the cart and remove items from the cart. The program will save each users specific order history in a database which can be displayed when the user purchases their items.
+
+Also, our page features an admin section where the admin(restaurant owner) can enter in the item name, item description, and price of an item they'd like to add to the menu. They can also delete and update these items. 
