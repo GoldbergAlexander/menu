@@ -43,7 +43,7 @@
                         <div class="col-5 item-list-cell"><span>Description</span></div>
                         <div class="col-1 item-list-cell"><span>Price</span></div>
                         <div class="col-2 item-list-cell">
-                            <img src="" th:src="@{/img/rem_shopping_cart_grey.svg}" width="24" height="24">
+                            <img src="" th:src="@{/img/delete_black.svg}" width="24" height="24">
                         </div>
                     </div>
 
@@ -51,19 +51,26 @@
                         <input type="hidden" th:field="*{list[__${stat.index}__].id}">
                         <div class="col-1 item-list-cell"><span th:text="${item.id}"></span></div>
                         <div class="col-3 item-list-cell"><input type="text" class="form-control" th:field="*{list[__${stat.index}__].name}"></div>
-                        <div class="col-5 item-list-cell"><input type="text" class="form-control" th:field="*{list[__${stat.index}__].description}"></div>
+                        <div class="col-5 item-list-cell"><input type="text" class="form-control" th:field="*{list[__${stat.index}__].description}">
+                        </div>
                         <div class="col-1 item-list-cell">
-                            <span>$</span><input class="form-control" th:value="${#numbers.formatDecimal(item.price, 1, 'COMMA', 2, 'POINT')}" th:field="*{list[__${stat.index}__].price}"></div>
+                            <span>$</span><input class="form-control" th:value="${#numbers.formatDecimal(item.price, 1, 'COMMA', 2, 'POINT')}"
+                                                 th:field="*{list[__${stat.index}__].price}"></div>
                         <div class="col-2 item-list-cell">
-                            <button class="btn btn-danger" type="submit" id="delete_item" name="delete_item" th:value="${item.id}"><img th:src="@{/img/delete_white.svg}" height="24" width="24"> Delete
+                            <button class="btn btn-danger" type="submit" id="delete_item" name="delete_item" th:value="${item.id}"><img
+                                    th:src="@{/img/delete_white.svg}" height="24" width="24"> Delete
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col save-btn-col">
-                        <button class="btn btn-success" type="submit" id="new_item" name="new_item"><img th:src="@{/img/add_white.svg}" height="24" width="24"> New Item</button>
-                        <button class="btn btn-primary" type="submit" id="edit_items" name="edit_items"><img th:src="@{/img/save_white.svg}" height="24" width="24"> Save Items</button>
+                        <button class="btn btn-success" type="submit" id="new_item" name="new_item"><img th:src="@{/img/add_white.svg}" height="24"
+                                                                                                         width="24"> New Item
+                        </button>
+                        <button class="btn btn-primary" type="submit" id="edit_items" name="edit_items"><img th:src="@{/img/save_white.svg}"
+                                                                                                             height="24" width="24"> Save Items
+                        </button>
                     </div>
                 </div>
             </form>
@@ -75,7 +82,7 @@
                         <div class="col-1 item-list-cell"><span>ID</span></div>
                         <div class="col-9 item-list-cell"><span>Name</span></div>
                         <div class="col-2 item-list-cell">
-                            <img src="" th:src="@{/img/rem_shopping_cart_grey.svg}" width="24" height="24">
+                            <img src="" th:src="@{/img/delete_black.svg}" width="24" height="24">
                         </div>
                     </div>
 
@@ -84,15 +91,20 @@
                         <div class="col-1 item-list-cell"><span th:text="${cust.id}"></span></div>
                         <div class="col-9 item-list-cell"><input type="text" class="form-control" th:field="*{list[__${stat.index}__].name}"></div>
                         <div class="col-2 item-list-cell">
-                            <button class="btn btn-danger" type="submit" id="delete_cust" name="delete_cust" th:value="${cust.id}"><img th:src="@{/img/delete_white.svg}" height="24" width="24"> Delete
+                            <button class="btn btn-danger" type="submit" id="delete_cust" name="delete_cust" th:value="${cust.id}"><img
+                                    th:src="@{/img/delete_white.svg}" height="24" width="24"> Delete
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col save-btn-col">
-                        <button class="btn btn-success" type="submit" id="new_cust" name="new_cust"><img th:src="@{/img/add_white.svg}" height="24" width="24"> New Customer</button>
-                        <button class="btn btn-primary" type="submit" id="edit_custs" name="edit_custs"><img th:src="@{/img/save_white.svg}" height="24" width="24"> Save Customers</button>
+                        <button class="btn btn-success" type="submit" id="new_cust" name="new_cust"><img th:src="@{/img/add_white.svg}" height="24"
+                                                                                                         width="24"> New Customer
+                        </button>
+                        <button class="btn btn-primary" type="submit" id="edit_custs" name="edit_custs"><img th:src="@{/img/save_white.svg}"
+                                                                                                             height="24" width="24"> Save Customers
+                        </button>
                     </div>
                 </div>
             </form>

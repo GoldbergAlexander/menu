@@ -1,13 +1,15 @@
 package edu.csci4300.menu.pojo;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
-public class Item implements Serializable{
+public class Item implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
@@ -19,7 +21,7 @@ public class Item implements Serializable{
     private List<Purchase> purchases;
 
 
-    public Item(){
+    public Item() {
 
     }
 
@@ -85,13 +87,13 @@ public class Item implements Serializable{
 
 
     @Override
-    public String toString(){
+    public String toString() {
         String string = "";
         string += "{";
         string += "\"id\":" + id + ", ";
         string += "\"name\":" + "\"" + name + "\", ";
         string += "\"price\":" + price + ", ";
-        string += "\"description\":" + "\"" + description +"\"";
+        string += "\"description\":" + "\"" + description + "\"";
         string += "}";
         return string;
     }

@@ -1,16 +1,17 @@
 package edu.csci4300.menu.pojo;
 
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.SessionScope;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Component
-public class Customer implements Serializable{
+public class Customer implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
@@ -18,7 +19,7 @@ public class Customer implements Serializable{
     @OneToMany(mappedBy = "customer")
     private List<Purchase> purchases;
 
-    public Customer(){
+    public Customer() {
 
     }
 

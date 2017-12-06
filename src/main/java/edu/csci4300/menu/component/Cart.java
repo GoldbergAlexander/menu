@@ -1,8 +1,6 @@
 package edu.csci4300.menu.component;
 
 import edu.csci4300.menu.pojo.Item;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -14,9 +12,10 @@ import java.util.List;
 /* Cart Component scoped to the session -- Imported in the controller to track users cart */
 @Component
 @SessionScope
-public class Cart implements Serializable{
+public class Cart implements Serializable {
     private List<Item> itemList;
-    public Cart(){
+
+    public Cart() {
         itemList = new ArrayList<>();
     }
 
@@ -33,16 +32,16 @@ public class Cart implements Serializable{
         return this;
     }
 
-    public Cart addItemToList(Item item){
+    public Cart addItemToList(Item item) {
         itemList.add(item);
         return this;
     }
 
-    public Cart removeItemFromList(Item item){
+    public Cart removeItemFromList(Item item) {
         Iterator<Item> itemIterator = itemList.iterator();
-        while(itemIterator.hasNext()){
+        while (itemIterator.hasNext()) {
             Item item1 = itemIterator.next();
-            if(item1.getId().equals(item.getId())){
+            if (item1.getId().equals(item.getId())) {
                 itemIterator.remove();
                 break;
             }
@@ -51,7 +50,7 @@ public class Cart implements Serializable{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String string = "";
         string += itemList.toString();
         return string;

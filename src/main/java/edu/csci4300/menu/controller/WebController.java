@@ -31,11 +31,6 @@ public class WebController {
     @Autowired
     private Cart cart;
 
-    @RequestMapping("/login")
-    public String login(Model model) {
-        return "login";
-    }
-
     @RequestMapping("/items")
     public String items(Model model) {
         List<Item> itemList = itemRepository.findAll();
@@ -44,7 +39,8 @@ public class WebController {
     }
 
     @PostMapping("/cart")
-    public String updateCart(Model model, @ModelAttribute("item") Item item, @RequestParam(required = false) String add_cart, @RequestParam(required = false) String remove_cart) {
+    public String updateCart(Model model, @ModelAttribute("item") Item item, @RequestParam(required = false) String add_cart,
+                             @RequestParam(required = false) String remove_cart) {
         Item foundItem = itemRepository.findOne(item.getId());
         if (foundItem != null) {
             if (add_cart != null) {
@@ -99,7 +95,7 @@ public class WebController {
     @RequestMapping("/purchases")
     public String getPurchases(Model model, @ModelAttribute Customer customer) {
         model.addAttribute("customers", customerRepository.findAll());
-        if(customer != null && customer.getId() != null) {
+        if (customer != null && customer.getId() != null) {
             customer = customerRepository.findOne(customer.getId());
             List<Purchase> purchases = customer.getPurchases();
             model.addAttribute("customer", customer);

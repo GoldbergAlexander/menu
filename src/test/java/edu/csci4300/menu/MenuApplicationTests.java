@@ -14,13 +14,13 @@ public class MenuApplicationTests {
     @Autowired
     ItemRepository itemRepository;
 
-	@Test
-	public void contextLoads() {
-	}
+    @Test
+    public void contextLoads() {
+    }
 
-	@Test
-    public void repoTest(){
-	    //Item item = new Item();
+    @Test
+    public void repoTest() {
+        //Item item = new Item();
         //item.setDescription("description").setName("name").setPrice(15);
         //itemRepository.save(item);
         System.out.println(itemRepository.findAll().toString());

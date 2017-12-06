@@ -1,14 +1,13 @@
 package edu.csci4300.menu.pojo;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-public class Purchase implements Serializable{
+public class Purchase implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
@@ -24,7 +23,7 @@ public class Purchase implements Serializable{
     private List<Item> items;
 
     @ManyToOne
-    @JoinColumn(name  = "customer_id")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     public Purchase() {

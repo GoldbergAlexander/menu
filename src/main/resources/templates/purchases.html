@@ -9,13 +9,13 @@
     <div class="container-fluid">
         <form action="#" th:action="@{/purchases}" th:object="${customer}" method="post">
             <div class="form-group">
-            <label for="cart-select">Select Customer</label>
-            <select id ="cart-select"class="form-control" th:field="*{id}">
-                <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.name}"></option>
-            </select>
+                <label for="cart-select">Select Customer</label>
+                <select id="cart-select" class="form-control" th:field="*{id}">
+                    <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.name}"></option>
+                </select>
                 <small class="form-text text-muted">Selected customer's purchase history will be retrieved</small>
             </div>
-            <input class="btn btn-primary" type="submit" value="submit"/>
+            <input class="btn btn-primary" type="submit" value="Submit"/>
         </form>
     </div>
 

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
@@ -63,7 +62,7 @@ public class AdminWebController {
         } else if (delete_item != null) {
             try {
                 itemRepository.delete(Long.valueOf(delete_item));
-            }catch (org.springframework.dao.DataIntegrityViolationException ex){
+            } catch (org.springframework.dao.DataIntegrityViolationException ex) {
                 return "redirect:" + "/admin?dberror=rmitem";
             }
         } else if (new_cust != null) {
@@ -78,37 +77,11 @@ public class AdminWebController {
         } else if (delete_cust != null) {
             try {
                 customerRepository.delete(Long.valueOf(delete_cust));
-            }catch (org.springframework.dao.DataIntegrityViolationException ex){
+            } catch (org.springframework.dao.DataIntegrityViolationException ex) {
                 return "redirect:" + "/admin?dberror=rmcust#customers";
             }
             return "redirect:" + "/admin#customers";
         }
         return adminIndex(model);
-    }
-
-    @GetMapping("/items")
-    public String adminItems(Model model) {
-        List<Item> itemList = itemRepository.findAll();
-        model.addAttribute("items", itemList);
-        model.addAttribute("newItem", new Item());
-        return "admin/items";
-    }
-
-    @PostMapping("/items")
-    public String adminItemUpdate(Model model, @ModelAttribute Item item, @RequestParam(required = false) String action) {
-        System.out.println(item.toString());
-        if (action != null && action.equalsIgnoreCase("remove")) {
-            itemRepository.delete(item.getId());
-        } else {
-            itemRepository.save(item);
-        }
-        return adminItems(model);
-    }
-
-    @GetMapping("/customers")
-    public String customers(Model model) {
-        List<Customer> customerList = customerRepository.findAll();
-        model.addAttribute("customers", customerList);
-        return "customers";
     }
 }

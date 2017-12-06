@@ -8,6 +8,7 @@ table, th, tr, td {
 
 .navbar {
     padding: .5rem 9rem;
+    box-shadow: 0px -25px 30px 24px rgba(0, 0, 0, 0.75);
 }
 
 .item-list {
@@ -69,115 +70,31 @@ table, th, tr, td {
     align-items: flex-end;
 }
 
-.glass{
-    /* background styles */
-    position: relative;
-    display: inline-block;
-    padding: 15px 25px;
-    background-color: green; /*for compatibility with older browsers*/
-    background-image: linear-gradient(green,cyan);
-
-    /* text styles */
-    text-decoration: none;
-    color: #fff;
-    font-size: 25px;
-    font-family: sans-serif;
-    font-weight: 100;
-
-    border-radius: 3px;
-    box-shadow: 0px 1px 4px -2px #333;
-    text-shadow: 0px -1px #333;
-
-    height: 70px;
-    width: 400px;
-    padding-bottom: 30px;
-    margin-bottom: 20px;
-}
-
-.glass:after{
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: calc(100% - 4px);
-    height: 50%;
-    background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
-}
-
-.glass:hover{
-    background: linear-gradient(#073,#0fa);
-}
-
 #home-page {
-    background-image: url("/../img/cleanGray.jpg");
-    color: white;
-    /* Full height */
+    background-color: #4c5359;
+    max-height: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#home-page .container-fluid {
     height: 100%;
-
-    /* Center and scale the image nicely */
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-color: slategray;
+    display: flex;
+    align-items: center;
 }
 
-#home-description {
-    margin-bottom: 20px;
-    margin-top: 10px;
-}
-
-#purchases-page {
-    background-color: lightgray;
-    padding: 30px;
+#home-page .jumbotron {
+    flex: 1;
+    box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.75);
 }
 
 #purchase-table-item {
     padding-bottom: 10px;
 }
 
-#login-page {
-    background-image: url("/../img/sleek-black.jpg");
-    color: white;
-    /* Full height */
-    height: 100%;
-
-    /* Center and scale the image nicely */
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-color: black;
-}
-
-#login-content {
-    border-radius: 25px;
-    background: linear-gradient(to bottom right, dimgray, whitesmoke);
-    position: absolute;
-    top: 40%;
-    left: 40%;
-    padding: 20px;
-    font-weight: bold;
-    text-shadow:
-            -1px -1px 0 #000,
-            1px -1px 0 #000,
-            -1px 1px 0 #000,
-            1px 1px 0 #000;
-}
-
-#login-username {
-    height: 60px;
-    width: 110%;
-}
-
-#login-password {
-    height: 60px;
-    width: 110%;
-}
-
-#login-button {
-    text-align: center;
-}
 .container-fluid {
     width: 75%;
 }
@@ -198,5 +115,5 @@ form .item-list-cell span {
 }
 
 button img {
-    vertical-align: top!important;
+    vertical-align: top !important;
 }
