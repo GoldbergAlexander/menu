@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
@@ -62,8 +63,8 @@ public class AdminWebController {
         } else if (delete_item != null) {
             try {
                 itemRepository.delete(Long.valueOf(delete_item));
-            } catch (org.springframework.dao.DataIntegrityViolationException e) {
-
+            }catch (org.springframework.dao.DataIntegrityViolationException ex){
+                return "redirect:" + "/admin#items?dberror=" + ex.toString();
             }
         } else if (new_cust != null) {
             customerRepository.save(newCust);
@@ -77,8 +78,8 @@ public class AdminWebController {
         } else if (delete_cust != null) {
             try {
                 customerRepository.delete(Long.valueOf(delete_cust));
-            } catch (org.springframework.dao.DataIntegrityViolationException e) {
-
+            }catch (org.springframework.dao.DataIntegrityViolationException ex){
+                return "redirect:" + "/admin#customers?dberror=" + ex.toString();
             }
             return "redirect:" + "/admin#customers";
         }
