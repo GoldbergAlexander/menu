@@ -120,14 +120,11 @@ table, th, tr, td {
     background-attachment: fixed;
     background-size: cover;
     background-color: slategray;
-
-    font-family:"Times New Roman", Times, serif;
 }
 
 #home-description {
     margin-bottom: 20px;
     margin-top: 10px;
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 #purchases-page {
