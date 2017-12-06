@@ -123,3 +123,22 @@ table, th, tr, td {
 .container-fluid {
     width: 75%;
 }
+
+form .item-list-cell span {
+    width: auto;
+    margin-right: 5px;
+}
+
+.save-btn-col {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.save-btn-col button:last-child {
+    margin-left: 3rem;
+}
+
+button img {
+    vertical-align: top!important;
+}
