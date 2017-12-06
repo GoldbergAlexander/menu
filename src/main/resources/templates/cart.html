@@ -24,65 +24,71 @@
                 <div class="col-3 item-list-cell"><span th:text="${item.name}"></span></div>
                 <div class="col-5 item-list-cell"><span th:text="${item.description}"></span></div>
                 <div class="col-2 item-list-cell"><span th:text="'$'+${#numbers.formatDecimal(item.price, 1, 'COMMA', 2, 'POINT')}"></span></div>
-                <div class="col-2 item-list-cell"><button class="btn btn-danger" type="submit" name="remove_cart"><img th:src="@{/img/delete_white.svg}" height="24" width="24"></button></div>
+                <div class="col-2 item-list-cell"><button class="btn btn-danger" type="submit" name="remove_cart"><img th:src="@{/img/delete_white.svg}" height="24" width="24"> Remove</button></div>
             </div>
         </form>
     </div>
 
     <form action="#" th:action="@{/save}" th:object="${customer}" method="post">
-        <div class="form-row">
+        <div class="row">
             <div class="form-group col-3">
                 <label class="custom-control custom-radio">
                     <span class="custom-control-description">New Customer</span>
-                    <input id="cart-new-radio" class="custom-control-input" type="radio" name="existing" value="false" checked="checked" onclick="return radio_onclick()">
+                    <input id="cart-new-radio" class="custom-control-input" type="radio" name="existing" value="false" checked="checked" onclick="return check_inputs()">
                     <span class="custom-control-indicator"></span>
                 </label>
-                <input  id="new-customer-name-box"type="text" class="form-control" th:field="*{name}" placeholder="Enter name..."/>
+                <input id="new-customer-name-box"type="text" class="form-control" th:field="*{name}" placeholder="Enter name..." onchange="return check_inputs()" onkeypress="return check_inputs()" oninput="return check_inputs()" />
             </div>
             <div class="form-group col-3">
                 <label class="custom-control custom-radio">
                     <span class="custom-control-description">Existing Customer</span>
-                    <input id="cart-existing-radio"class="custom-control-input" type="radio" name="existing" value="true" onclick="return radio_onclick()"(>
+                    <input id="cart-existing-radio"class="custom-control-input" type="radio" name="existing" value="true" onclick="return check_inputs()">
                     <span class="custom-control-indicator"></span>
                 </label>
-                <select id ="cart-select"class="form-control" th:field="*{id}">
+                <select id ="cart-select"class="form-control" th:field="*{id}" onchange="return check_inputs()">
                     <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.name}"></option>
                 </select>
             </div>
-            <div class="form-group col-2 purchase-btn-group"><input id ="cart-add-btn"class="btn btn-primary" type="submit" value="Purchase"/></div>
+            <div class="form-group col-2 purchase-btn-group"><input id ="cart-add-btn" class="btn btn-primary" type="submit" value="Purchase"/></div>
         </div>
     </form>
 </div>
 
 <script type="text/javascript">
 
-    (function() {
-        if ($('#cart-new-radio').prop('checked')) {
-            $('#cart-select').hide();
-            $('#new-customer-name-box').show();
-            $('#cart-add-btn').val('Add Customer');
-        }
-    })()
+    $(function() {
+        check_inputs();
+    });
 
-    function radio_onclick() {
+    function check_inputs() {
         if ($('#cart-new-radio').prop('checked')) {
             $('#cart-select').hide();
             $('#new-customer-name-box').show();
-            $('#cart-add-btn').val('Add Customer');
-            $('#cart-add-btn').show();
+            if ($('#new-customer-name-box').val().length === 0) {
+                $('#cart-add-btn')
+                    .prop('disabled', true)
+                    .attr('aria-disabled', 'true');
+            } else {
+                $('#cart-add-btn')
+                    .prop('disabled', false)
+                    .attr('aria-disabled', 'false');
+            }
         }
 
         if ($('#cart-existing-radio').prop('checked')) {
             $('#cart-select').show();
             $('#new-customer-name-box').hide();
-            $('#cart-add-btn').val('Purchase');
-            if ($('#cart-select option').length == 0) {
-                $('#cart-add-btn').hide();
+            if ($('#cart-select option:selected').text().length === 0) {
+                $('#cart-add-btn')
+                    .prop('disabled', true)
+                    .attr('aria-disabled', 'true');
             } else {
-                $('#cart-add-btn').show();
+                $('#cart-add-btn')
+                    .prop('disabled', false)
+                    .attr('aria-disabled', 'false');
             }
         }
-    };
+    }
 
 </script>
 

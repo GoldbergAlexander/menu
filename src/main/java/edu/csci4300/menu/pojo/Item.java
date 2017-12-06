@@ -23,7 +23,7 @@ public class Item implements Serializable{
 
     }
 
-    public Item(Long id, String name, int price, String description, List<Purchase> purchases) {
+    public Item(Long id, String name, float price, String description, List<Purchase> purchases) {
         super();
         this.id = id;
         this.name = name;
@@ -41,8 +41,8 @@ public class Item implements Serializable{
         return id;
     }
 
-    public Item setId(long id){
-        this.id = id;
+    public Item setName(String name) {
+        this.name = name;
         return this;
     }
 
@@ -50,8 +50,8 @@ public class Item implements Serializable{
         return name;
     }
 
-    public Item setName(String name) {
-        this.name = name;
+    public Item setPrice(float price) {
+        this.price = price;
         return this;
     }
 
@@ -59,8 +59,8 @@ public class Item implements Serializable{
         return price;
     }
 
-    public Item setPrice(float price) {
-        this.price = price;
+    public Item setDescription(String description) {
+        this.description = description;
         return this;
     }
 
@@ -68,8 +68,8 @@ public class Item implements Serializable{
         return description;
     }
 
-    public Item setDescription(String description) {
-        this.description = description;
+    public Item setPurchases(List<Purchase> purchases) {
+        this.purchases = purchases;
         return this;
     }
 
@@ -77,10 +77,12 @@ public class Item implements Serializable{
         return purchases;
     }
 
-    public Item setPurchases(List<Purchase> purchases) {
-        this.purchases = purchases;
-        return this;
+    public void updateItem(Item newItem) {
+        this.name = newItem.getName();
+        this.description = newItem.getDescription();
+        this.price = newItem.getPrice();
     }
+
 
     @Override
     public String toString(){
