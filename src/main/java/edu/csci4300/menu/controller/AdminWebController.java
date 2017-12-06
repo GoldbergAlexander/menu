@@ -64,7 +64,7 @@ public class AdminWebController {
             try {
                 itemRepository.delete(Long.valueOf(delete_item));
             }catch (org.springframework.dao.DataIntegrityViolationException ex){
-                return "redirect:" + "/admin#items?dberror=" + ex.toString();
+                return "redirect:" + "/admin?dberror=rmitem";
             }
         } else if (new_cust != null) {
             customerRepository.save(newCust);
@@ -79,7 +79,7 @@ public class AdminWebController {
             try {
                 customerRepository.delete(Long.valueOf(delete_cust));
             }catch (org.springframework.dao.DataIntegrityViolationException ex){
-                return "redirect:" + "/admin#customers?dberror=" + ex.toString();
+                return "redirect:" + "/admin?dberror=rmcust#customers";
             }
             return "redirect:" + "/admin#customers";
         }
